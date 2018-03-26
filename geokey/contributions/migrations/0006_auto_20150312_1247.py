@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-import django_pgjson.fields
+from django.contrib.postgres.fields import JSONField
 
 
 class Migration(migrations.Migration):
@@ -15,13 +15,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='historicalobservation',
             name='properties',
-            field=django_pgjson.fields.JsonBField(default={}),
+            field=JSONField(default={}),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='observation',
             name='properties',
-            field=django_pgjson.fields.JsonBField(default={}),
+            field=JSONField(default={}),
             preserve_default=True,
         ),
     ]

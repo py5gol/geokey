@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import django_pgjson.fields
+from django.contrib.postgres.fields import JSONField
 from django.conf import settings
 import geokey.core.mixins
 
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
                 ('description', models.TextField(null=True, blank=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('filters', django_pgjson.fields.JsonBField(null=True, blank=True)),
+                ('filters', JSONField(null=True, blank=True)),
                 ('where_clause', models.TextField(null=True, blank=True)),
                 ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
                 ('project', models.ForeignKey(related_name='subsets', to='projects.Project')),

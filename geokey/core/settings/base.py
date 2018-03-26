@@ -37,12 +37,12 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.postgres',
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'django.contrib.sites',
 
     # Third-party apps
-    'django_hstore',
     'oauth2_provider',
     'easy_thumbnails',
     'allauth',
@@ -95,7 +95,7 @@ OAUTH2_PROVIDER_APPLICATION_MODEL = 'applications.Application'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
-        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ),
 }
 

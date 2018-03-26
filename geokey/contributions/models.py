@@ -2,6 +2,7 @@
 
 import re
 
+from django.contrib.postgres.fields import JSONField
 from pytz import utc
 from datetime import datetime
 from iso8601 import parse_date
@@ -14,9 +15,7 @@ from django.dispatch import receiver
 from django.db.models.signals import pre_save, post_save
 from django.contrib.gis.db import models as gis
 
-from django_pgjson.fields import JsonBField
 from simple_history.models import HistoricalRecords
-
 from geokey.core.exceptions import InputError
 
 from .base import (
@@ -72,7 +71,7 @@ class Observation(models.Model):
         default=OBSERVATION_STATUS.active,
         max_length=20
     )
-    properties = JsonBField(default={})
+    properties = JSONField(default={})
     created_at = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -123,7 +122,7 @@ class Observation(models.Model):
             if field.key in data and data.get(field.key) is not None:
                 try:
                     field.validate_input(data.get(field.key))
-                except InputError, error:
+                except InputError as error:
                     is_valid = False
                     error_messages.append(error)
 
@@ -154,7 +153,7 @@ class Observation(models.Model):
         for field in category.fields.all().filter(status='active'):
             try:
                 field.validate_input(data.get(field.key))
-            except InputError, error:
+            except InputError as error:
                 is_valid = False
                 error_messages.append(error)
 
@@ -324,6 +323,7 @@ def pre_save_observation_update(sender, **kwargs):
     Receiver that is called before an observation is saved. Updates
     `search_index`, `display_field`, `expiry_field` properties.
     """
+    _ = sender
     observation = kwargs.get('instance')
     observation.update_display_field()
     observation.update_expiry_field()
@@ -377,6 +377,7 @@ def post_save_comment_count_update(sender, **kwargs):
     Receiver that is called after a comment is saved. Updates num_media and
     num_comments properties.
     """
+    _ = sender
     comment = kwargs.get('instance')
     comment.commentto.update_count()
 
