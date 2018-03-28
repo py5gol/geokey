@@ -95,7 +95,7 @@ class CommentAbstractAPIViewTest(TestCase):
         self.assertEqual(ref.status, 'review')
 
     def test_create_reviewcomment_to_empty_obs_with_admin(self):
-        self.contribution.properties = None
+        self.contribution.properties = ''
         self.contribution.save()
 
         url = reverse('api:project_comments', kwargs={
@@ -386,6 +386,8 @@ class CommentAbstractAPIViewResolveTest(TestCase):
             'contribution_id': self.contribution.id,
             'comment_id': self.comment.id
         })
+        if not User.objects.filter(display_name='AnonymousUser').exists():
+            UserFactory.create(display_name='AnonymousUser')
         request = self.factory.patch(url, {'text': 'Updated'})
         request.user = AnonymousUser()
         request.data = {'review_status': 'resolved'}
