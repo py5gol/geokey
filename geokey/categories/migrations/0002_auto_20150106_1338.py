@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('categories', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('projects', '0001_initial'),
+        ('projects', '0001_squashed_0008_historicalproject'),
     ]
 
     operations = [

@@ -9,8 +9,8 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('socialaccount', '0003_extra_data_default_dict'),
-        ('projects', '0008_historicalproject'),
+      #  ('socialaccount', '0003_extra_data_default_dict'),
+        ('projects', '0001_squashed_0008_historicalproject'),
     ]
 
     operations = [

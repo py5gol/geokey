@@ -8,7 +8,8 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        #('users', '0001_squashed_0004_auto_20150617_0902'),
+        #migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [

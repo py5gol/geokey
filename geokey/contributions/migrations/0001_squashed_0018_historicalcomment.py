@@ -179,11 +179,11 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('projects', '0005_auto_20150202_1041'),
+        ('projects', '0001_squashed_0008_historicalproject'),
         ('categories', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('categories', '0013_auto_20150130_1440'),
-        ('projects', '0001_initial'),
+        ('projects', '0001_squashed_0008_historicalproject'),
     ]
 
     operations = [

@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('projects', '0008_historicalproject'),
+        ('projects', '0001_squashed_0008_historicalproject'),
         ('categories', '0017_category_expiry_field'),
     ]
 

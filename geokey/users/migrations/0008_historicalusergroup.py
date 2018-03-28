@@ -10,7 +10,7 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0008_historicalproject'),
+        ('projects', '0001_squashed_0008_historicalproject'),
         ('users', '0007_auto_20151006_1110'),
     ]
 
