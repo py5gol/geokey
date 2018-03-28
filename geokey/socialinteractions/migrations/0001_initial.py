@@ -8,7 +8,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -25,10 +24,17 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('text_to_post', models.TextField(blank=True, null=True)),
                 ('link', models.TextField(blank=True, null=True)),
-                ('status', models.CharField(choices=[(b'active', b'active'), (b'inactive', b'inactive')], default=b'active', max_length=20)),
-                ('creator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='socialinteractions_post', to='projects.Project')),
-                ('socialaccount', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='socialinteractions_post', to='socialaccount.SocialAccount')),
+                ('status',
+                 models.CharField(choices=[(b'active', b'active'), (b'inactive', b'inactive')], default=b'active',
+                                  max_length=20)),
+                ('creator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                              to=settings.AUTH_USER_MODEL)),
+                ('project',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='socialinteractions_post',
+                                   to='projects.Project')),
+                ('socialaccount',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='socialinteractions_post',
+                                   to='socialaccount.SocialAccount')),
             ],
         ),
         migrations.CreateModel(
@@ -37,14 +43,25 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('text_to_pull', models.TextField(blank=True, null=True)),
-                ('frequency', models.CharField(choices=[(b'5min', b'5min'), (b'10min', b'10min'), (b'20min', b'20min'), (b'30min', b'30min'), (b'hourly', b'hourly'), (b'daily', b'daily'), (b'weekly', b'weekly'), (b'fortnightly', b'fortnightly'), (b'monthly', b'monthly')], default=b'daily', max_length=20)),
-                ('status', models.CharField(choices=[(b'active', b'active'), (b'inactive', b'inactive')], default=b'active', max_length=20)),
+                ('frequency', models.CharField(
+                    choices=[(b'5min', b'5min'), (b'10min', b'10min'), (b'20min', b'20min'), (b'30min', b'30min'),
+                             (b'hourly', b'hourly'), (b'daily', b'daily'), (b'weekly', b'weekly'),
+                             (b'fortnightly', b'fortnightly'), (b'monthly', b'monthly')], default=b'daily',
+                    max_length=20)),
+                ('status',
+                 models.CharField(choices=[(b'active', b'active'), (b'inactive', b'inactive')], default=b'active',
+                                  max_length=20)),
                 ('since_id', models.TextField(blank=True, null=True)),
                 ('updated_at', models.DateTimeField(null=True)),
                 ('checked_at', models.DateTimeField(null=True)),
-                ('creator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='socialinteractions_pull', to='projects.Project')),
-                ('socialaccount', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='socialinteractions_pull', to='socialaccount.SocialAccount')),
+                ('creator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                              to=settings.AUTH_USER_MODEL)),
+                ('project',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='socialinteractions_pull',
+                                   to='projects.Project')),
+                ('socialaccount',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='socialinteractions_pull',
+                                   to='socialaccount.SocialAccount')),
             ],
         ),
     ]
