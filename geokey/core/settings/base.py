@@ -81,14 +81,14 @@ MIDDLEWARE_CLASSES = (
 
 # Settings for django-oauth-toolkit
 # see: https://django-oauth-toolkit.readthedocs.org/en/latest/settings.html
-# OAUTH2_PROVIDER = {
-#     'SCOPES': {
-#         'read': 'Access private projects, contributions and other information',
-#         'write': 'Manage contributions, comments and media files'
-#     },
-#     'CLIENT_SECRET_GENERATOR_LENGTH': 40
-# }
-# OAUTH2_PROVIDER_APPLICATION_MODEL = 'applications.Application'
+OAUTH2_PROVIDER = {
+    'SCOPES': {
+        'read': 'Access private projects, contributions and other information',
+        'write': 'Manage contributions, comments and media files'
+    },
+    'CLIENT_SECRET_GENERATOR_LENGTH': 40
+}
+OAUTH2_PROVIDER_APPLICATION_MODEL = 'applications.Application'
 
 # Settings for Django REST Framework
 # see: http://www.django-rest-framework.org/api-guide/settings/
@@ -138,9 +138,9 @@ ACCOUNT_FORMS = {
     'change_password': 'geokey.users.forms.CustomPasswordChangeForm',
     'reset_password_from_key': 'geokey.users.forms.CustomResetPasswordKeyForm'
 }
-# SOCIALACCOUNT_ADAPTER = 'geokey.core.adapters.SocialAccountAdapter'
-# SOCIALACCOUNT_QUERY_EMAIL = True
-# SOCIALACCOUNT_PROVIDERS = {}
+SOCIALACCOUNT_ADAPTER = 'geokey.core.adapters.SocialAccountAdapter'
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_PROVIDERS = {}
 
 SITE_ROOT = dirname(dirname(dirname(abspath(__file__))))
 STATICFILES_DIRS = [normpath(join(SITE_ROOT, 'static'))]
