@@ -72,7 +72,7 @@ class SingleContributionAPIViewTest(TestCase):
         )
 
     def test_approve_pending_with_admin_empty_properties(self):
-        self.observation.properties = ''
+        self.observation.properties = None
         self.observation.status = 'pending'
         self.observation.save()
 
@@ -1206,7 +1206,7 @@ class TestProjectPublicApi(TestCase):
                 'category': category,
                 'properties': {'text': 'blub'},
                 'location': loc2 }
-
+                
             )
 
         response = self.get(self.admin, bbox='41,32,45,35')
@@ -1241,7 +1241,7 @@ class TestProjectPublicApi(TestCase):
                 'category': category,
                 'properties': {'text': 'blub'},
                 'location': loc2 }
-
+                
             )
 
         response = self.get(self.admin, bbox='text_only')
@@ -1278,7 +1278,7 @@ class TestProjectPublicApi(TestCase):
                 'category': category,
                 'properties': {'text': 'blub'},
                 'location': loc2 }
-
+                
             )
 
         response = self.get(self.admin, bbox='41,32,45,35', search='blah')

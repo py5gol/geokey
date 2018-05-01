@@ -2,11 +2,29 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.contrib.postgres.fields import JSONField
 import django.utils.timezone
 from django.conf import settings
 
 
+# Functions from the following migrations need manual copying.
+# Move them and any dependencies into this file, then update the
+# RunPython operations to refer to the local versions:
+# geokey.users.migrations.0002_auto_20150106_1420
+
+def create_anonymous(apps, schema_editor):
+    User = apps.get_model("users", "User")
+    if not User.objects.filter(display_name='AnonymousUser').exists():
+        User.objects.create(
+            display_name='AnonymousUser',
+            password='',
+            email=''
+        )
+
+
 class Migration(migrations.Migration):
+
+    replaces = [(b'users', '0001_initial'), (b'users', '0002_auto_20150106_1420'), (b'users', '0003_auto_20150611_1307'), (b'users', '0004_auto_20150617_0902')]
 
     dependencies = [
         ('projects', '0001_initial'),
@@ -45,4 +63,17 @@ class Migration(migrations.Migration):
             },
             bases=(models.Model,),
         ),
+        migrations.AddField(
+            model_name='usergroup',
+            name='filters',
+            field=JSONField(null=True, blank=True),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='usergroup',
+            name='where_clause',
+            field=models.TextField(null=True, blank=True),
+            preserve_default=True,
+        ),
+        migrations.RunPython(create_anonymous),
     ]

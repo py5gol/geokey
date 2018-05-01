@@ -8,10 +8,7 @@ from django.dispatch import receiver
 
 from simple_history.models import HistoricalRecords
 
-try:
-    from django.contrib.postgres.fields import JSONField
-except ImportError:
-    from django_pgjson.fields import JsonBField as JSONField
+from django.contrib.postgres.fields import JSONField
 from oauth2_provider.models import AccessToken
 from allauth.account.signals import email_confirmed
 

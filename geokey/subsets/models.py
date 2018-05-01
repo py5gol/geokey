@@ -3,10 +3,7 @@
 from django.conf import settings
 from django.db import models
 
-try:
-    from django.contrib.postgres.fields import JSONField
-except ImportError:
-    from django_pgjson.fields import JsonBField as JSONField
+from django.contrib.postgres.fields import JSONField
 from simple_history.models import HistoricalRecords
 
 

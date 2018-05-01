@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import migrations
+from django.contrib.postgres.fields import JSONField
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('contributions', '0005_auto_20150202_1135'),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='historicalobservation',
+            name='properties',
+            field=JSONField(default={}),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='observation',
+            name='properties',
+            field=JSONField(default={}),
+            preserve_default=True,
+        ),
+    ]
