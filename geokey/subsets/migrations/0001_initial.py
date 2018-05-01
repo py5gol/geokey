@@ -3,7 +3,10 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
-import django.contrib.postgres.fields.jsonb
+try:
+    from django.contrib.postgres.fields.jsonb import JSONField
+except ImportError:
+    from django_pgjson.fields import JsonBField as JSONField
 from django.db import migrations, models
 import django.db.models.deletion
 import geokey.core.mixins
@@ -26,7 +29,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
                 ('description', models.TextField(blank=True, null=True)),
                 ('created_at', models.DateTimeField(blank=True, editable=False)),
-                ('filters', django.contrib.postgres.fields.jsonb.JSONField(blank=True, null=True)),
+                ('filters', JSONField(blank=True, null=True)),
                 ('where_clause', models.TextField(blank=True, null=True)),
                 ('history_id', models.AutoField(primary_key=True, serialize=False)),
                 ('history_date', models.DateTimeField()),
@@ -49,7 +52,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
                 ('description', models.TextField(blank=True, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('filters', django.contrib.postgres.fields.jsonb.JSONField(blank=True, null=True)),
+                ('filters', JSONField(blank=True, null=True)),
                 ('where_clause', models.TextField(blank=True, null=True)),
                 ('creator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
                 ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subsets', to='projects.Project')),

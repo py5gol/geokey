@@ -3,7 +3,10 @@
 from __future__ import unicode_literals
 
 import django.contrib.gis.db.models.fields
-import django.contrib.postgres.fields.jsonb
+try:
+    from django.contrib.postgres.fields.jsonb import JSONField
+except ImportError:
+    from django_pgjson.fields import JsonBField as JSONField
 from django.db import migrations, models
 import django.db.models.deletion
 
@@ -54,7 +57,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.IntegerField(auto_created=True, blank=True, db_index=True, verbose_name='ID')),
                 ('status', models.CharField(choices=[(b'active', b'active'), (b'draft', b'draft'), (b'review', b'review'), (b'pending', b'pending'), (b'deleted', b'deleted')], default=b'active', max_length=20)),
-                ('properties', django.contrib.postgres.fields.jsonb.JSONField(default={})),
+                ('properties', JSONField(default={})),
                 ('created_at', models.DateTimeField(blank=True, editable=False)),
                 ('updated_at', models.DateTimeField(blank=True, editable=False, null=True)),
                 ('version', models.IntegerField(default=1)),
@@ -105,7 +108,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('status', models.CharField(choices=[(b'active', b'active'), (b'draft', b'draft'), (b'review', b'review'), (b'pending', b'pending'), (b'deleted', b'deleted')], default=b'active', max_length=20)),
-                ('properties', django.contrib.postgres.fields.jsonb.JSONField(default={})),
+                ('properties', JSONField(default={})),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now_add=True, null=True)),
                 ('version', models.IntegerField(default=1)),

@@ -3,9 +3,11 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
-import django.contrib.postgres.fields.jsonb
+try:
+    from django.contrib.postgres.fields.jsonb import JSONField
+except ImportError:
+    from django_pgjson.fields import JsonBField as JSONField
 from django.db import migrations, models
-import django.db.models.deletion
 import django.utils.timezone
 import geokey.core.mixins
 
@@ -43,7 +45,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True, null=True)),
                 ('can_contribute', models.BooleanField(default=True)),
                 ('can_moderate', models.BooleanField(default=False)),
-                ('filters', django.contrib.postgres.fields.jsonb.JSONField(blank=True, null=True)),
+                ('filters', JSONField(blank=True, null=True)),
                 ('where_clause', models.TextField(blank=True, null=True)),
                 ('history_id', models.AutoField(primary_key=True, serialize=False)),
                 ('history_date', models.DateTimeField()),
@@ -66,7 +68,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True, null=True)),
                 ('can_contribute', models.BooleanField(default=True)),
                 ('can_moderate', models.BooleanField(default=False)),
-                ('filters', django.contrib.postgres.fields.jsonb.JSONField(blank=True, null=True)),
+                ('filters', JSONField(blank=True, null=True)),
                 ('where_clause', models.TextField(blank=True, null=True)),
                 ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='usergroups', to='projects.Project')),
                 ('users', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
