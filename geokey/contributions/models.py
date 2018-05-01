@@ -2,7 +2,10 @@
 
 import re
 
-from django.contrib.postgres.fields import JSONField
+try:
+    from django.contrib.postgres.fields import JSONField
+except ImportError:
+    from django_pgjson.fields import JsonBField as JSONField
 from pytz import utc
 from datetime import datetime
 from iso8601 import parse_date
