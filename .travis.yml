@@ -11,10 +11,10 @@ addons:
   postgresql: '9.5'
   apt:
     packages:
-      - postgresql-9.5-postgis-2.2
+      - postgresql-9.5-postgis-2.3
 
 env:
-  - DJANGO='>=1.8,<1.9'
+  - DJANGO='>=1.8,<1.10'
   - DJANGO='>=1.11,<1.12'
 
 virtualenv:
