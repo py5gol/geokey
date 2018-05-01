@@ -2,7 +2,10 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-from django.contrib.postgres.fields import JSONField
+try:
+    from django.contrib.postgres.fields import JSONField
+except ImportError:
+    from django_pgjson.fields import JsonBField as JSONField
 import django.utils.timezone
 from django.conf import settings
 
