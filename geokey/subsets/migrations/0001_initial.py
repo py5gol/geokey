@@ -5,7 +5,7 @@ from django.db import models, migrations
 try:
     from django.contrib.postgres.fields import JSONField
 except ImportError:
-    from django_pgjson.fields import JsonBField as JSONFieldd
+    from django_pgjson.fields import JsonBField as JSONField
 from django.conf import settings
 import geokey.core.mixins
 
