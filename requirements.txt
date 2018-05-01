@@ -7,7 +7,7 @@ django-model-utils==3.1.1
 django-oauth-toolkit==0.12.0
 django-simple-history==1.9.0
 django-nose==1.4.5
-djangorestframework==3.7.7
+djangorestframework==3.6.3
 djangorestframework-gis==0.12
 easy-thumbnails==2.4.2
 gdata==2.0.18
@@ -21,6 +21,6 @@ requests[security]==2.18.4
 tweepy==3.5.0
 facebook-sdk==2.0.0
 oauth2client==4.1.2
-oauthlib==2.0.7
+oauthlib==2.0.6
 google-api-python-client==1.6.4
 factory-boy==2.10.0
